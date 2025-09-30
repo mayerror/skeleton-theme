@@ -1,0 +1,118 @@
+{% comment %} Declare the menu setting from parent section {% endcomment %}
+{%- assign menu_handle = menu_handle | default: section.settings.menu -%}
+{%- assign menu = linklists[menu_handle] -%}
+
+{% comment %} Only render if a menu is selected {% endcomment %}
+{% if menu != blank %}
+  <ul class="header-menu-list">
+    {% for link in menu.links %}
+      <li class="header-menu-item">
+        <a href="{{ link.url }}" class="header-menu-link">{{ link.title }}</a>
+        {% if link.links != blank %}
+          <ul class="header-submenu">
+            {% for child_link in link.links %}
+              <li class="header-submenu-item">
+                <a href="{{ child_link.url }}" class="header-submenu-link">{{ child_link.title }}</a>
+              </li>
+            {% endfor %}
+          </ul>
+        {% endif %}
+      </li>
+    {% endfor %}
+  </ul>
+{% endif %}
+
+<style>
+  .header-menu-list {
+    display: flex;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    gap: 1.5rem;
+  }
+
+  .header-menu-item {
+    position: relative;
+  }
+
+  .header-menu-link {
+    text-decoration: none;
+    color: #333;
+    font-weight: 500;
+    padding: 0.5rem 0;
+    transition: color 0.3s ease;
+  }
+
+  .header-menu-link:hover {
+    color: #1900ff;
+  }
+
+  .header-submenu {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    background-color: white;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    border-radius: 0.25rem;
+    min-width: 200px;
+    list-style: none;
+    margin: 0;
+    padding: 0.5rem 0;
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(-10px);
+    transition: all 0.3s ease;
+    z-index: 1000;
+  }
+
+  .header-menu-item:hover .header-submenu {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+  }
+
+  .header-submenu-item {
+    margin: 0;
+  }
+
+  .header-submenu-link {
+    display: block;
+    padding: 0.5rem 1rem;
+    text-decoration: none;
+    color: #333;
+    transition: background-color 0.3s ease;
+  }
+
+  .header-submenu-link:hover {
+    background-color: #f5f5f5;
+    color: #1900ff;
+  }
+
+  /* Mobile styles */
+  @media (max-width: 768px) {
+    .header-menu-list {
+      flex-direction: column;
+      gap: 0;
+    }
+
+    .header-submenu {
+      position: static;
+      box-shadow: none;
+      background-color: #f9f9f9;
+      opacity: 1;
+      visibility: visible;
+      transform: none;
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.3s ease;
+    }
+
+    .header-submenu.active {
+      max-height: 300px;
+    }
+
+    .header-submenu-link {
+      padding-left: 2rem;
+    }
+  }
+</style>

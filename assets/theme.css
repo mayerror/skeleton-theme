@@ -1,0 +1,33 @@
+.header__title {
+  font-size: 1.5rem;
+  font-weight: bold;
+  margin: 0;
+}
+
+.header__logo {
+  flex-shrink: 0;
+}
+
+.header__menu {
+  flex-grow: 1;
+  margin: 0 2rem;
+}
+
+.header__icons {
+  flex-shrink: 0;
+}
+
+@media (max-width: 768px) {
+  .header__container {
+    flex-wrap: wrap;
+  }
+  .header__menu {
+    order: 3;
+    width: 100%;
+    margin: 1rem 0 0;
+    display: none;
+  }
+  .header__menu.active {
+    display: block;
+  }
+}

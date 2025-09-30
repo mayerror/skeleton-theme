@@ -1,0 +1,46 @@
+$primary-color: #1900ff;
+$secondary-color: #f8f9fa;
+$text-color: #333;
+$link-color: #1900ff;
+
+// Header styles
+.header {
+  &__title {
+    font-size: 1.5rem;
+    font-weight: bold;
+    margin: 0;
+  }
+  
+  &__logo {
+    flex-shrink: 0;
+  }
+  
+  &__menu {
+    flex-grow: 1;
+    margin: 0 2rem;
+  }
+  
+  &__icons {
+    flex-shrink: 0;
+  }
+}
+
+// General responsive styles
+@media (max-width: 768px) {
+  .header {
+    &__container {
+      flex-wrap: wrap;
+    }
+    
+    &__menu {
+      order: 3;
+      width: 100%;
+      margin: 1rem 0 0;
+      display: none;
+    }
+    
+    &__menu.active {
+      display: block;
+    }
+  }
+}

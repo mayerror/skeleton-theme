@@ -1,0 +1,199 @@
+<div class="featured-collection">
+  <div class="featured-collection__container">
+    <h2 class="featured-collection__title">{{ section.settings.title | escape }}</h2>
+
+    {% if section.settings.collection != blank %}
+      {% assign collection = collections[section.settings.collection] %}
+
+      <div class="collection-grid">
+        {% for product in collection.products limit: section.settings.product_limit %}
+          <div class="collection-product">
+            <a href="{{ product.url | within: collection }}" class="collection-product__link">
+              {% if product.featured_media != blank %}
+                {{
+                  product.featured_media
+                  | media_tag: image_size: '500x', width: 300, height: 300, class: 'collection-product__image'
+                }}
+              {% endif %}
+
+              <div class="collection-product__info">
+                <h3 class="collection-product__title">{{ product.title }}</h3>
+
+                {% if section.settings.show_price %}
+                  <div class="collection-product__price">
+                    {% if product.price_varies %}
+                      <span class="price-min">{{ product.price_min | money }}</span> -
+                      <span class="price-max">{{ product.price_max | money }}</span>
+                    {% else %}
+                      <span class="price">{{ product.price | money }}</span>
+                    {% endif %}
+
+                    {% if product.compare_at_price > product.price %}
+                      <span class="compare-price">{{ product.compare_at_price | money }}</span>
+                    {% endif %}
+                  </div>
+                {% endif %}
+
+                {% if section.settings.show_vendor %}
+                  <div class="collection-product__vendor">{{ product.vendor }}</div>
+                {% endif %}
+              </div>
+            </a>
+          </div>
+        {% endfor %}
+      </div>
+    {% endif %}
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "Featured collection",
+  "settings": [
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Title",
+      "default": "Featured Collection"
+    },
+    {
+      "type": "collection",
+      "id": "collection",
+      "label": "Collection"
+    },
+    {
+      "type": "range",
+      "id": "product_limit",
+      "min": 2,
+      "max": 12,
+      "step": 1,
+      "label": "Products to show",
+      "default": 4
+    },
+    {
+      "type": "checkbox",
+      "id": "show_price",
+      "label": "Show price",
+      "default": true
+    },
+    {
+      "type": "checkbox",
+      "id": "show_vendor",
+      "label": "Show vendor",
+      "default": false
+    }
+  ],
+  "presets": [
+    {
+      "name": "Featured collection"
+    }
+  ]
+}
+{% endschema %}
+
+{% stylesheet %}
+  .featured-collection {
+    padding: 4rem 0;
+    background-color: var(--color-background, white);
+  }
+
+  .featured-collection__container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 1rem;
+  }
+
+  .featured-collection__title {
+    text-align: center;
+    margin-bottom: 2rem;
+    font-size: 2rem;
+    color: var(--color-foreground, #333);
+  }
+
+  .collection-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    gap: 2rem;
+    justify-items: center;
+  }
+
+  .collection-product {
+    width: 100%;
+    text-align: center;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    padding: 1.5rem;
+    background-color: white;
+    transition: box-shadow 0.3s ease;
+  }
+
+  .collection-product:hover {
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  }
+
+  .collection-product__link {
+    text-decoration: none;
+    color: inherit;
+    display: block;
+  }
+
+  .collection-product__image {
+    width: 100%;
+    height: auto;
+    object-fit: cover;
+    border-radius: 4px;
+    margin-bottom: 1rem;
+  }
+
+  .collection-product__title {
+    font-size: 1.2rem;
+    margin: 0 0 0.5rem 0;
+    color: var(--color-foreground, #333);
+    font-weight: 600;
+    font-family: var(--font-primary, Arial, sans-serif);
+  }
+
+  .collection-product__price {
+    margin: 0.75rem 0;
+    display: block;
+    font-size: 1.1rem;
+  }
+
+  .price-min,
+  .price-max,
+  .price {
+    color: var(--color-foreground, #333);
+    font-weight: bold;
+    font-family: var(--font-primary, Arial, sans-serif);
+  }
+
+  .compare-price {
+    text-decoration: line-through;
+    color: #999;
+    margin-left: 0.5rem;
+    font-size: 0.9rem;
+  }
+
+  .collection-product__vendor {
+    color: #666;
+    font-size: 0.9rem;
+    margin-top: 0.5rem;
+    font-style: italic;
+    font-family: var(--font-primary, Arial, sans-serif);
+  }
+
+  @media (max-width: 768px) {
+    .featured-collection {
+      padding: 2rem 0;
+    }
+
+    .featured-collection__title {
+      font-size: 1.5rem;
+    }
+
+    .collection-grid {
+      grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+      gap: 1rem;
+    }
+  }
+{% endstylesheet %}

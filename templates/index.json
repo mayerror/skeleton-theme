@@ -9,12 +9,23 @@
  */
 {
   "sections": {
-    "main": {
+    "hello-world": {
       "type": "hello-world",
       "settings": {}
+    },
+    "featured-collection": {
+      "type": "featured-collection",
+      "settings": {
+        "title": "Featured Collection",
+        "collection": "",
+        "product_limit": 4,
+        "show_price": true,
+        "show_vendor": false
+      }
     }
   },
   "order": [
-    "main"
+    "hello-world",
+    "featured-collection"
   ]
 }
