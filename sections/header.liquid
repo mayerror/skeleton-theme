@@ -1,4 +1,4 @@
-<header class="header">
+<header class="header full-width">
   <div class="container">
     <div class="header__inner">
       <!-- Mobile menu toggle -->
@@ -30,7 +30,7 @@
                         selected
                       {% endif %}
                     >
-                      {{ locale.endonym_name | capitalize }}
+                      {{ locale.iso_code | upcase }}
                     </option>
                   {% endfor %}
                 </select>
