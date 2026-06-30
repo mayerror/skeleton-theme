@@ -11,7 +11,11 @@
         <div class="header__inner-left">
           {% if section.settings.logo_position == 'left' %}
             {% if section.settings.logo != blank %}
-              <img src="{{ section.settings.logo | img_url: '200x' }}" alt="{{ section.settings.logo.alt | escape }}" class="header__logo-image">
+              <img
+                src="{{ section.settings.logo | img_url: '200x' }}"
+                alt="{{ section.settings.logo.alt | escape }}"
+                class="header__logo-image"
+              >
             {% else %}
               <p>{{ shop.name | link_to: routes.root_url }}</p>
             {% endif %}
@@ -20,7 +24,11 @@
         <div class="header__inner-center">
           {% if section.settings.logo_position == 'center' %}
             {% if section.settings.logo != blank %}
-              <img src="{{ section.settings.logo | img_url: '200x' }}" alt="{{ section.settings.logo.alt | escape }}" class="header__logo-image">
+              <img
+                src="{{ section.settings.logo | img_url: '200x' }}"
+                alt="{{ section.settings.logo.alt | escape }}"
+                class="header__logo-image"
+              >
             {% else %}
               <p>{{ shop.name | link_to: routes.root_url }}</p>
             {% endif %}
@@ -29,7 +37,11 @@
         <div class="header__inner-right">
           {% if section.settings.logo_position == 'right' %}
             {% if section.settings.logo != blank %}
-              <img src="{{ section.settings.logo | img_url: '200x' }}" alt="{{ section.settings.logo.alt | escape }}" class="header__logo-image">
+              <img
+                src="{{ section.settings.logo | img_url: '200x' }}"
+                alt="{{ section.settings.logo.alt | escape }}"
+                class="header__logo-image"
+              >
             {% else %}
               <p>{{ shop.name | link_to: routes.root_url }}</p>
             {% endif %}
@@ -222,3 +234,166 @@
   ]
 }
 {% endschema %}
+
+{% stylesheet %}
+  .header {
+    background-color: var(--color-background-2, #333);
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    z-index: 1000;
+
+    &__inner {
+      display: flex;
+      flex-direction: column;
+      min-height: 80px;
+    }
+
+    &__inner-top {
+      display: flex;
+    }
+
+    &__inner-left {
+      flex: 1;
+    }
+    &__inner-right {
+      flex: 1;
+      display: flex;
+      align-items: center;
+      /* padding: 1rem 0; */
+      justify-content: flex-end;
+    }
+
+    &__inner-bottom {
+      display: flex;
+      padding: 1rem 0;
+    }
+
+    &__logo {
+      flex: 1;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+
+      h1 {
+        color: --primary-color;
+        font-size: 1.8rem;
+      }
+    }
+
+    &__icons {
+      display: flex;
+      justify-content: flex-end;
+      align-items: center;
+
+      .icon {
+        position: relative;
+        margin-left: 20px;
+        cursor: pointer;
+
+        &.language-select {
+          select {
+            background: transparent;
+            border: 1px solid #ddd;
+            padding: 5px;
+            border-radius: 4px;
+            cursor: pointer;
+          }
+        }
+
+        .badge {
+          position: absolute;
+          top: -8px;
+          right: -8px;
+          background-color: --primary-color;
+          color: white;
+          border-radius: 50%;
+          width: 18px;
+          height: 18px;
+          font-size: 0.7rem;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+        }
+      }
+    }
+
+    &__main-menu {
+      flex: 2;
+
+      ul {
+        display: flex;
+        list-style: none;
+        justify-content: center;
+
+        li {
+          margin: 0 15px;
+
+          a {
+            text-decoration: none;
+            color: --text-color;
+            font-weight: 500;
+            transition: color 0.3s ease;
+
+            &:hover {
+              color: --primary-color;
+            }
+          }
+        }
+      }
+    }
+    @media (max-width: 1200px) {
+      .container {
+        padding: 0 1rem;
+      }
+      .header {
+        &__inner-left {
+          flex: 0;
+        }
+
+        &__logo {
+          justify-content: flex-start;
+        }
+      }
+    }
+  }
+
+  /* Responsive design */
+  @media (max-width: 768px) {
+    .header {
+      flex-direction: column;
+      height: auto;
+      padding: 10px 0;
+
+      &__logo {
+        order: 1;
+        margin-bottom: 10px;
+        text-align: center;
+      }
+
+      &__main-menu {
+        order: 3;
+        margin: 10px 0;
+
+        ul {
+          flex-wrap: wrap;
+          justify-content: center;
+
+          li {
+            margin: 5px;
+          }
+        }
+      }
+
+      &__icons {
+        order: 2;
+        margin-bottom: 10px;
+        justify-content: center;
+      }
+    }
+
+    .main-content {
+      h1 {
+        font-size: 2rem;
+      }
+    }
+  }
+{% endstylesheet %}
