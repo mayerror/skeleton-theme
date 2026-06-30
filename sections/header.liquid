@@ -11,7 +11,11 @@
         <div class="header__inner-left">
           {% if section.settings.logo_position == 'left' %}
             {% if section.settings.logo != blank %}
-              <img src="{{ section.settings.logo | img_url: '200x' }}" alt="{{ section.settings.logo.alt | escape }}" class="header__logo-image">
+              <img
+                src="{{ section.settings.logo | img_url: '200x' }}"
+                alt="{{ section.settings.logo.alt | escape }}"
+                class="header__logo-image"
+              >
             {% else %}
               <p>{{ shop.name | link_to: routes.root_url }}</p>
             {% endif %}
@@ -20,7 +24,11 @@
         <div class="header__inner-center">
           {% if section.settings.logo_position == 'center' %}
             {% if section.settings.logo != blank %}
-              <img src="{{ section.settings.logo | img_url: '200x' }}" alt="{{ section.settings.logo.alt | escape }}" class="header__logo-image">
+              <img
+                src="{{ section.settings.logo | img_url: '200x' }}"
+                alt="{{ section.settings.logo.alt | escape }}"
+                class="header__logo-image"
+              >
             {% else %}
               <p>{{ shop.name | link_to: routes.root_url }}</p>
             {% endif %}
@@ -29,7 +37,11 @@
         <div class="header__inner-right">
           {% if section.settings.logo_position == 'right' %}
             {% if section.settings.logo != blank %}
-              <img src="{{ section.settings.logo | img_url: '200x' }}" alt="{{ section.settings.logo.alt | escape }}" class="header__logo-image">
+              <img
+                src="{{ section.settings.logo | img_url: '200x' }}"
+                alt="{{ section.settings.logo.alt | escape }}"
+                class="header__logo-image"
+              >
             {% else %}
               <p>{{ shop.name | link_to: routes.root_url }}</p>
             {% endif %}

@@ -14,5 +14,19 @@
     --color-background: {{ settings.background_color }};
     --color-foreground: {{ settings.foreground_color }};
     --style-border-radius-inputs: {{ settings.input_corner_radius }}px;
+
+    --color-text: {{ settings.scheme_1_text }};
+    --color-background-1: {{ settings.scheme_1_background_1 }};
+    --color-background-2: {{ settings.scheme_1_background_2 }};
+    --color-accent-1: {{ settings.scheme_1_accent_1 }};
+    --color-accent-2: {{ settings.scheme_1_accent_2 }};
+  }
+
+  [data-color-scheme="scheme-2"] {
+    --color-text: {{ settings.scheme_2_text }};
+    --color-background-1: {{ settings.scheme_2_background_1 }};
+    --color-background-2: {{ settings.scheme_2_background_2 }};
+    --color-accent-1: {{ settings.scheme_2_accent_1 }};
+    --color-accent-2: {{ settings.scheme_2_accent_2 }};
   }
 {% endstyle %}
