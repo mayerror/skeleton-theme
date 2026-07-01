@@ -17,13 +17,14 @@
     "input_corner_radius": 4,
     "scheme_1_text": "#000000",
     "scheme_1_background_1": "#ffffff",
-    "scheme_1_background_2": "#f6f6f6",
+    "scheme_1_background_2": "#D59090",
     "scheme_1_accent_1": "#1900ff",
     "scheme_1_accent_2": "#ff6b6b",
     "scheme_2_text": "#ffffff",
     "scheme_2_background_1": "#000000",
     "scheme_2_background_2": "#222222",
     "scheme_2_accent_1": "#1900ff",
-    "scheme_2_accent_2": "#ff6b6b"
+    "scheme_2_accent_2": "#ff6b6b",
+    "content_for_index": []
   }
 }
