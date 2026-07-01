@@ -14,9 +14,19 @@
     "header": {
       "type": "header",
       "settings": {
-        "menu": ""
+        "menu": "main-menu",
+        "logo": "shopify://shop_images/Logo_400_a2365ead-e016-4de4-bbc0-80b0ddba3128.png",
+        "logo_position": "center",
+        "mobile_logo_position": "center",
+        "show_account": true,
+        "show_language_selector": false,
+        "show_country_selector": false,
+        "padding_top": 16,
+        "padding_bottom": 16
       }
     }
   },
-  "order": ["header"]
+  "order": [
+    "header"
+  ]
 }
