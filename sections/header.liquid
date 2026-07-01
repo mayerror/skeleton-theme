@@ -12,9 +12,8 @@
           {% if section.settings.logo_position == 'left' %}
             {% if section.settings.logo != blank %}
               <img
-                src="{{ section.settings.logo | image_url: '200x' }}"
+                src="{{ section.settings.logo | image_url: width: 200 }}"
                 alt="{{ section.settings.logo.alt | escape }}"
-                width="{{ image.width }}"
                 class="header__logo-image"
               >
             {% else %}
