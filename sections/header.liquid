@@ -14,7 +14,8 @@
               <img
                 src="{{ section.settings.logo | image_url: width: 200 }}"
                 alt="{{ section.settings.logo.alt | escape }}"
-                width="{{ section.settings.logo | width: 200 }}"
+                width="{{ section.settings.logo.width }}"
+                height="{{ section.settings.logo.height }}"
                 class="header__logo-image"
               >
             {% else %}
