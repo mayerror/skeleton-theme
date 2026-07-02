@@ -27,7 +27,7 @@
           {% if section.settings.logo_position == 'center' %}
             {% if section.settings.logo != blank %}
               <img
-                src="{{ section.settings.logo | image_url: width: 200 }}"
+                src="{{ section.settings.logo | image_url: width: section.settings.logo_width }}"
                 alt="{{ section.settings.logo.alt | escape }}"
                 width="{{ section.settings.logo_width }}"
                 height="{{ section.settings.logo.height }}"
