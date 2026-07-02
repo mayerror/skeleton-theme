@@ -15,12 +15,13 @@
       "type": "header",
       "settings": {
         "menu": "main-menu",
+        "menu_position": "center",
         "logo": "shopify://shop_images/Logo_400_a2365ead-e016-4de4-bbc0-80b0ddba3128.png",
         "logo_width": 200,
         "logo_position": "center",
         "mobile_logo_position": "center",
         "show_account": true,
-        "show_language_selector": false,
+        "show_language_selector": true,
         "show_country_selector": false,
         "padding_top": 16,
         "padding_bottom": 16
