@@ -333,11 +333,29 @@
       cursor: pointer;
     }
 
+  .header__language-selector,
+  .header__country-selector {
+      position: relative;
+  }
+
+  .header__language-selector::after,
+  .header__country-selector::after {
+      content: '▾';
+      position: absolute;
+      right: 5px;
+      top: 50%;
+      transform: translateY(-50%);
+      pointer-events: none;
+      color: inherit;
+  }
+
   .header__language-selector select,
   .header__country-selector select {
       background: transparent;
       border: none;
-      padding: 5px;
+      outline: none;
+      box-shadow: none;
+      padding: 5px 18px 5px 5px;
       cursor: pointer;
       color: inherit;
       font-size: inherit;
