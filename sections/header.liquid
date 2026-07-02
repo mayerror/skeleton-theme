@@ -340,13 +340,16 @@
 
   .header__language-selector::after,
   .header__country-selector::after {
-      content: '▾';
+      content: '';
       position: absolute;
-      right: 5px;
+      right: 8px;
       top: 50%;
-      transform: translateY(-50%);
+      transform: translateY(-50%) rotate(45deg);
+      border-right: 2px solid currentColor;
+      border-bottom: 2px solid currentColor;
+      width: 6px;
+      height: 6px;
       pointer-events: none;
-      color: inherit;
   }
 
   .header__language-selector select,
