@@ -335,23 +335,22 @@
 
   .header__language-selector,
   .header__country-selector {
-      position: relative;
+      display: flex;
+      align-items: center;
   }
 
   .header__language-selector::after,
   .header__country-selector::after {
       content: '';
-      position: absolute;
-      right: 6px;
-      top: 0;
-      bottom: 0;
-      margin: auto;
       transform: rotate(45deg);
       border-right: 2px solid currentColor;
       border-bottom: 2px solid currentColor;
       width: 6px;
       height: 6px;
       pointer-events: none;
+      flex-shrink: 0;
+      margin-left: auto;
+      margin-right: 6px;
   }
 
   .header__language-selector select,
