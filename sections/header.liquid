@@ -12,7 +12,7 @@
           {% if section.settings.logo_position == 'left' %}
             {% if section.settings.logo != blank %}
               <img
-                src="{{ section.settings.logo | image_url: width: 200 }}"
+                src="{{ section.settings.logo | image_url: width: section.settings.logo_width }}"
                 alt="{{ section.settings.logo.alt | escape }}"
                 width="{{ section.settings.logo_width }}"
                 height="{{ section.settings.logo.height }}"
@@ -42,7 +42,7 @@
           {% if section.settings.logo_position == 'right' %}
             {% if section.settings.logo != blank %}
               <img
-                src="{{ section.settings.logo | image_url: width: 200 }}"
+                src="{{ section.settings.logo | image_url: width: section.settings.logo_width }}"
                 alt="{{ section.settings.logo.alt | escape }}"
                 width="{{ section.settings.logo_width }}"
                 height="{{ section.settings.logo.height }}"
