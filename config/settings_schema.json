@@ -141,6 +141,12 @@
       },
       {
         "type": "color",
+        "id": "scheme_2_text_hover",
+        "label": "Text hover",
+        "default": "#ff6b6b"
+      },
+      {
+        "type": "color",
         "id": "scheme_2_background_1",
         "label": "Background 1",
         "default": "#000000"
