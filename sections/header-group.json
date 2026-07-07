@@ -17,7 +17,7 @@
         "menu": "main-menu",
         "menu_position": "center",
         "logo": "shopify://shop_images/Logo_400_a2365ead-e016-4de4-bbc0-80b0ddba3128.png",
-        "logo_width": 300,
+        "logo_width": 200,
         "logo_position": "center",
         "mobile_logo_position": "center",
         "show_account": true,
