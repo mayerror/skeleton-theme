@@ -11,13 +11,15 @@
         <div class="header__inner-left">
           {% if section.settings.logo_position == 'left' %}
             {% if section.settings.logo != blank %}
-              <img
-                src="{{ section.settings.logo | image_url: width: section.settings.logo_width }}"
-                alt="{{ section.settings.logo.alt | escape }}"
-                width="{{ section.settings.logo_width }}"
-                height="{{ section.settings.logo.height }}"
-                class="header__logo-image"
-              >
+              <a href="{{ routes.root_url }}" class="header__logo-link">
+                <img
+                  src="{{ section.settings.logo | image_url: width: section.settings.logo_width }}"
+                  alt="{{ section.settings.logo.alt | escape }}"
+                  width="{{ section.settings.logo_width }}"
+                  height="{{ section.settings.logo.height }}"
+                  class="header__logo-image"
+                >
+              </a>
             {% else %}
               <p>{{ shop.name | link_to: routes.root_url }}</p>
             {% endif %}
@@ -26,13 +28,15 @@
         <div class="header__inner-center">
           {% if section.settings.logo_position == 'center' %}
             {% if section.settings.logo != blank %}
-              <img
-                src="{{ section.settings.logo | image_url: width: section.settings.logo_width }}"
-                alt="{{ section.settings.logo.alt | escape }}"
-                width="{{ section.settings.logo_width }}"
-                height="{{ section.settings.logo.height }}"
-                class="header__logo-image"
-              >
+              <a href="{{ routes.root_url }}" class="header__logo-link">
+                <img
+                  src="{{ section.settings.logo | image_url: width: section.settings.logo_width }}"
+                  alt="{{ section.settings.logo.alt | escape }}"
+                  width="{{ section.settings.logo_width }}"
+                  height="{{ section.settings.logo.height }}"
+                  class="header__logo-image"
+                >
+              </a>
             {% else %}
               <p>{{ shop.name | link_to: routes.root_url }}</p>
             {% endif %}
@@ -41,13 +45,15 @@
         <div class="header__inner-right">
           {% if section.settings.logo_position == 'right' %}
             {% if section.settings.logo != blank %}
-              <img
-                src="{{ section.settings.logo | image_url: width: section.settings.logo_width }}"
-                alt="{{ section.settings.logo.alt | escape }}"
-                width="{{ section.settings.logo_width }}"
-                height="{{ section.settings.logo.height }}"
-                class="header__logo-image"
-              >
+              <a href="{{ routes.root_url }}" class="header__logo-link">
+                <img
+                  src="{{ section.settings.logo | image_url: width: section.settings.logo_width }}"
+                  alt="{{ section.settings.logo.alt | escape }}"
+                  width="{{ section.settings.logo_width }}"
+                  height="{{ section.settings.logo.height }}"
+                  class="header__logo-image"
+                >
+              </a>
             {% else %}
               <p>{{ shop.name | link_to: routes.root_url }}</p>
             {% endif %}
@@ -55,7 +61,7 @@
           <!-- Header icons -->
           <div class="header__icons">
             {% if section.settings.show_language_selector %}
-              <div class="header__language-selector">
+              <div class="header__language-selector chevron">
                 {% comment %} Language selector would go here {% endcomment %}
                 <select aria-label="Language selector">
                   {% for locale in shop.published_locales %}
@@ -291,6 +297,14 @@
     font-size: 1.8rem;
   }
 
+  .header__logo-link {
+    display: inline-block;
+  }
+
+  .header__logo-link:hover {
+    opacity: 0.7;
+  }
+
   .header__icons {
     display: flex;
     justify-content: flex-end;
@@ -315,147 +329,131 @@
 
   .header__language-selector,
   .header__country-selector {
-      position: relative;
+    position: relative;
   }
 
-  .header__language-selector::after,
-  .header__country-selector::after {
-      content: '';
-      position: absolute;
-      right: 6px;
-      top: -3px;
-      bottom: 0;
-      margin: auto;
-      transform: rotate(45deg);
-      border-right: 1px solid currentColor;
-      border-bottom: 1px solid currentColor;
-      width: 6px;
-      height: 6px;
-      pointer-events: none;
+  .chevron::after {
+    content: '';
+    position: absolute;
+    right: 6px;
+    top: -4px;
+    bottom: 0;
+    margin: auto;
+    transform: rotate(45deg);
+    border-right: 1px solid currentColor;
+    border-bottom: 1px solid currentColor;
+    width: 6px;
+    height: 6px;
+    pointer-events: none;
   }
 
   .header__language-selector select,
   .header__country-selector select {
-      background: transparent;
-      border: none;
-      outline: none;
-      box-shadow: none;
-      padding: 5px 22px 5px 8px;
-      cursor: pointer;
-      color: inherit;
-      font-size: 14px;
-      font-family: inherit;
-      -webkit-appearance: none;
-      -moz-appearance: none;
-      appearance: none;
+    background: transparent;
+    border: none;
+    outline: none;
+    box-shadow: none;
+    padding: 0.4rem 1.0rem 0.4rem 0.4rem;
+    cursor: pointer;
+    color: inherit;
+    font-size: 14px;
+    font-family: inherit;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
   }
 
-    /* .header__icons .icon .badge {
-      position: absolute;
-      top: -4px;
-      right: -8px;
-      background-color: --primary-color;
-      color: white;
-      border-radius: 50%;
-      width: 18px;
-      height: 18px;
-      font-size: 0.7rem;
+  .header__main-menu {
+    flex: 2;
+  }
+
+  .header__main-menu ul {
+    display: flex;
+    list-style: none;
+    justify-content: center;
+  }
+
+  .header__main-menu ul li {
+    margin: 0 15px;
+  }
+
+  .header__main-menu ul li a {
+    text-decoration: none;
+    color: var(--color-text, #222);
+    font-weight: 500;
+    transition: color 0.3s ease;
+  }
+
+  .header__main-menu ul li a:hover {
+    color: --primary-color;
+  }
+
+  @media (max-width: 1200px) {
+    .header .container {
+      padding: 0 1rem;
+    }
+    .header .header__inner-left {
+      flex: 0;
+    }
+    .header .header__logo {
+      justify-content: flex-start;
+    }
+  }
+
+  .header__menu-toggle {
+    display: none;
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 10px;
+    z-index: 1001;
+  }
+
+  .hamburger {
+    display: block;
+    width: 24px;
+    height: 3px;
+    background-color: #333;
+    margin: 5px 0;
+    transition: transform 0.3s ease, opacity 0.3s ease;
+    border-radius: 1px;
+  }
+
+  @media (max-width: 768px) {
+    .header__menu-toggle {
       display: flex;
+      flex-direction: column;
       align-items: center;
       justify-content: center;
-    } */
-
-    .header__main-menu {
-      flex: 2;
     }
 
-    .header__main-menu ul {
-      display: flex;
-      list-style: none;
-      justify-content: center;
+    .header__inner-top {
+      flex-wrap: wrap;
     }
 
-    .header__main-menu ul li {
-      margin: 0 15px;
+    .header__inner-bottom {
+      order: 3;
+      width: 100%;
     }
 
-    .header__main-menu ul li a {
-      text-decoration: none;
-      color: var(--color-text, #222);
-      font-weight: 500;
-      transition: color 0.3s ease;
-    }
-
-    .header__main-menu ul li a:hover {
-      color: --primary-color;
-    }
-
-    @media (max-width: 1200px) {
-      .header .container {
-        padding: 0 1rem;
-      }
-      .header .header__inner-left {
-        flex: 0;
-      }
-      .header .header__logo {
-        justify-content: flex-start;
-      }
-    }
-
-    .header__menu-toggle {
+    .header__navigation {
       display: none;
-      background: none;
-      border: none;
-      cursor: pointer;
-      padding: 10px;
-      z-index: 1001;
+      position: absolute;
+      top: 100%;
+      left: 0;
+      right: 0;
+      background-color: white;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+      z-index: 1000;
+      padding: 1rem;
     }
 
-    .hamburger {
+    .header__navigation.active {
       display: block;
-      width: 24px;
-      height: 3px;
-      background-color: #333;
-      margin: 5px 0;
-      transition: transform 0.3s ease, opacity 0.3s ease;
-      border-radius: 1px;
     }
 
-    @media (max-width: 768px) {
-      .header__menu-toggle {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        justify-content: center;
-      }
-
-      .header__inner-top {
-        flex-wrap: wrap;
-      }
-
-      .header__inner-bottom {
-        order: 3;
-        width: 100%;
-      }
-
-      .header__navigation {
-        display: none;
-        position: absolute;
-        top: 100%;
-        left: 0;
-        right: 0;
-        background-color: white;
-        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-        z-index: 1000;
-        padding: 1rem;
-      }
-
-      .header__navigation.active {
-        display: block;
-      }
-
-      .header {
-        position: relative;
-      }
+    .header {
+      position: relative;
     }
+  }
 {% endstyle %}

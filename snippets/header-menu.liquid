@@ -7,8 +7,10 @@
   <ul class="header-menu-list">
     {% for link in menu.links %}
       <li class="header-menu-item">
-        <a href="{{ link.url }}" class="header-menu-link">{{ link.title }}</a>
-        {% if link.links != blank %}
+        {% if link.links == blank %}
+          <a href="{{ link.url }}" class="header-menu-link">{{ link.title }}</a>
+        {% else %}
+          <a href="{{ link.url }}" class="header-menu-link chevron">{{ link.title }}</a>
           <ul class="header-submenu">
             {% for child_link in link.links %}
               <li class="header-submenu-item">
@@ -35,16 +37,27 @@
     position: relative;
   }
 
+  .header-menu-item .chevron {
+    padding-right: 1.2rem;
+  }
+
+
   .header-menu-link {
+    padding: 0.2rem 0.3rem;
+    position: relative;
+    display: inline-block;
+    {% comment %} padding-right: 20px; {% endcomment %}
     text-decoration: none;
     color: #333;
     font-weight: 500;
-    padding: 0.5rem 0;
     transition: color 0.3s ease;
+    border-radius: 4px;
+    transition: background-color 0.25s ease;
   }
 
   .header-menu-link:hover {
-    color: #1900ff;
+    color: #800020;
+    background-color: rgba(0, 0, 0, 0.04);
   }
 
   .header-submenu {
