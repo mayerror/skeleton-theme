@@ -4,7 +4,7 @@
 
 {% comment %} Only render if a menu is selected {% endcomment %}
 {% if menu != blank %}
-  <ul class="header-menu-list">
+  <menu class="header-menu-list">
     {% for link in menu.links %}
       <li class="header-menu-item">
         {% if link.links == blank %}
@@ -21,7 +21,7 @@
         {% endif %}
       </li>
     {% endfor %}
-  </ul>
+  </menu>
 {% endif %}
 
 <style>
@@ -56,7 +56,7 @@
   }
 
   .header-menu-link:hover {
-    color: #800020;
+    color: var(--color-text-hover, #800020);
     background-color: rgba(0, 0, 0, 0.04);
   }
 
@@ -98,7 +98,7 @@
 
   .header-submenu-link:hover {
     background-color: #f5f5f5;
-    color: #1900ff;
+    color: var(--color-text-hover, #800020);
   }
 
   /* Mobile styles */

@@ -16,6 +16,7 @@
     "foreground_color": "#DAD0D0",
     "input_corner_radius": 4,
     "scheme_1_text": "#000000",
+    "scheme_1_text_hover": "#800020",
     "scheme_1_background_1": "#ffffff",
     "scheme_1_background_2": "#FFDFE7",
     "scheme_1_accent_1": "#4E6752",
