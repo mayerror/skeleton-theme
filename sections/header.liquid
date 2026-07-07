@@ -88,6 +88,9 @@
                 </select>
               </div>
             {% endif %}
+            {% form 'localization' %}
+              <!-- form content -->
+            {% endform %}
 
             {% if section.settings.show_account and shop.customer_accounts_enabled %}
               <a href="{{ routes.account_url }}" aria-label="Account" class="header__account-icon">
