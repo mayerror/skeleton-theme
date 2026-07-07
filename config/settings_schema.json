@@ -101,6 +101,12 @@
       },
       {
         "type": "color",
+        "id": "scheme_1_text_hover",
+        "label": "Text hover",
+        "default": "#800020"
+      },
+      {
+        "type": "color",
         "id": "scheme_1_background_1",
         "label": "Background 1",
         "default": "#ffffff"
