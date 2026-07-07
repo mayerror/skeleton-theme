@@ -7,7 +7,7 @@
   <ul class="header-menu-list">
     {% for link in menu.links %}
       <li class="header-menu-item">
-        {% if link.links != blank %}
+        {% if link.links == blank %}
           <a href="{{ link.url }}" class="header-menu-link">{{ link.title }}</a>
         {% else %}
           <a href="{{ link.url }}" class="header-menu-link chevron">{{ link.title }}</a>
