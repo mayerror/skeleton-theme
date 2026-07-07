@@ -7,8 +7,8 @@
   <ul class="header-menu-list">
     {% for link in menu.links %}
       <li class="header-menu-item">
-        <a href="{{ link.url }}" class="header-menu-link chevron">{{ link.title }}</a>
         {% if link.links != blank %}
+          <a href="{{ link.url }}" class="header-menu-link chevron">{{ link.title }}</a>
           <ul class="header-submenu">
             {% for child_link in link.links %}
               <li class="header-submenu-item">
@@ -16,6 +16,8 @@
               </li>
             {% endfor %}
           </ul>
+        {% else %}
+
         {% endif %}
       </li>
     {% endfor %}
