@@ -11,13 +11,15 @@
         <div class="header__inner-left">
           {% if section.settings.logo_position == 'left' %}
             {% if section.settings.logo != blank %}
-              <img
-                src="{{ section.settings.logo | image_url: width: section.settings.logo_width }}"
-                alt="{{ section.settings.logo.alt | escape }}"
-                width="{{ section.settings.logo_width }}"
-                height="{{ section.settings.logo.height }}"
-                class="header__logo-image"
-              >
+              <a href="{{ routes.root_url }}" class="header__logo-link">
+                <img
+                  src="{{ section.settings.logo | image_url: width: section.settings.logo_width }}"
+                  alt="{{ section.settings.logo.alt | escape }}"
+                  width="{{ section.settings.logo_width }}"
+                  height="{{ section.settings.logo.height }}"
+                  class="header__logo-image"
+                >
+              </a>
             {% else %}
               <p>{{ shop.name | link_to: routes.root_url }}</p>
             {% endif %}
@@ -26,13 +28,15 @@
         <div class="header__inner-center">
           {% if section.settings.logo_position == 'center' %}
             {% if section.settings.logo != blank %}
-              <img
-                src="{{ section.settings.logo | image_url: width: section.settings.logo_width }}"
-                alt="{{ section.settings.logo.alt | escape }}"
-                width="{{ section.settings.logo_width }}"
-                height="{{ section.settings.logo.height }}"
-                class="header__logo-image"
-              >
+              <a href="{{ routes.root_url }}" class="header__logo-link">
+                <img
+                  src="{{ section.settings.logo | image_url: width: section.settings.logo_width }}"
+                  alt="{{ section.settings.logo.alt | escape }}"
+                  width="{{ section.settings.logo_width }}"
+                  height="{{ section.settings.logo.height }}"
+                  class="header__logo-image"
+                >
+              </a>
             {% else %}
               <p>{{ shop.name | link_to: routes.root_url }}</p>
             {% endif %}
@@ -41,13 +45,15 @@
         <div class="header__inner-right">
           {% if section.settings.logo_position == 'right' %}
             {% if section.settings.logo != blank %}
-              <img
-                src="{{ section.settings.logo | image_url: width: section.settings.logo_width }}"
-                alt="{{ section.settings.logo.alt | escape }}"
-                width="{{ section.settings.logo_width }}"
-                height="{{ section.settings.logo.height }}"
-                class="header__logo-image"
-              >
+              <a href="{{ routes.root_url }}" class="header__logo-link">
+                <img
+                  src="{{ section.settings.logo | image_url: width: section.settings.logo_width }}"
+                  alt="{{ section.settings.logo.alt | escape }}"
+                  width="{{ section.settings.logo_width }}"
+                  height="{{ section.settings.logo.height }}"
+                  class="header__logo-image"
+                >
+              </a>
             {% else %}
               <p>{{ shop.name | link_to: routes.root_url }}</p>
             {% endif %}
