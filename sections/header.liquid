@@ -55,9 +55,9 @@
           <!-- Header icons -->
           <div class="header__icons">
             {% if section.settings.show_language_selector %}
-              <div class="header__language-selector chevron">
+              <div class="header__language-selector">
                 {% comment %} Language selector would go here {% endcomment %}
-                <select aria-label="Language selector">
+                <select aria-label="Language selector" class="chevron">
                   {% for locale in shop.published_locales %}
                     <option
                       value="{{ locale.iso_code }}"
