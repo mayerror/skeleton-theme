@@ -1,0 +1,141 @@
+{%- if localization.available_languages.size > 1 -%}
+  <div class="custom-language-selector" data-current-locale="{{ localization.language.iso_code }}">
+    <button type="button" class="custom-select-button" aria-haspopup="listbox" aria-expanded="false">
+      <span class="current-language-name">{{ localization.language.endonym_name }}</span>
+      {% render 'icon-caret' %}
+    </button>
+    <ul class="custom-select-dropdown" role="listbox" hidden>
+      {%- for language in localization.available_languages -%}
+        <li
+          role="option"
+          data-value="{{ language.iso_code }}"
+          data-root-url="{{ language.root_url }}"
+          {% if language.iso_code == localization.language.iso_code %}
+            aria-selected="true"
+          {% endif %}
+          tabindex="-1"
+        >
+          {{ language.endonym_name }}
+        </li>
+      {%- endfor -%}
+    </ul>
+  </div>
+
+  {% javascript %}
+    class CustomLanguageSelector {
+      constructor(container) {
+        this.container = container;
+        this.button = container.querySelector('.custom-select-button');
+        this.dropdown = container.querySelector('.custom-select-dropdown');
+        this.options = [...container.querySelectorAll('[role="option"]')];
+        this.currentLocale = container.dataset.currentLocale;
+        this.init();
+      }
+
+      init() {
+        this.button.addEventListener('click', this.toggleDropdown.bind(this));
+        this.options.forEach((option) => {
+          option.addEventListener('click', () => this.selectLanguage(option));
+          option.addEventListener('keydown', (e) => {
+            if (e.key === 'Enter' || e.key === ' ') {
+              e.preventDefault();
+              this.selectLanguage(option);
+            }
+          });
+        });
+
+        document.addEventListener('click', (e) => {
+          if (!this.container.contains(e.target)) {
+            this.closeDropdown();
+          }
+        });
+
+        this.dropdown.addEventListener('keydown', this.handleDropdownKeydown.bind(this));
+      }
+
+      toggleDropdown() {
+        const isExpanded = this.button.getAttribute('aria-expanded') === 'true';
+        if (isExpanded) {
+          this.closeDropdown();
+        } else {
+          this.openDropdown();
+        }
+      }
+
+      openDropdown() {
+        this.button.setAttribute('aria-expanded', 'true');
+        this.dropdown.hidden = false;
+        this.dropdown.setAttribute('aria-hidden', 'false');
+        const selected = this.dropdown.querySelector('[aria-selected="true"]');
+        if (selected) selected.focus();
+      }
+
+      closeDropdown() {
+        this.button.setAttribute('aria-expanded', 'false');
+        this.dropdown.hidden = true;
+        this.dropdown.setAttribute('aria-hidden', 'true');
+        this.button.focus();
+      }
+
+      selectLanguage(option) {
+        const langCode = option.dataset.value;
+        const rootUrl = option.dataset.rootUrl;
+        if (!langCode) return;
+
+        const newUrl = this.buildLanguageUrl(rootUrl, langCode);
+        window.location.href = newUrl;
+      }
+
+      buildLanguageUrl(rootUrl, newLangCode) {
+        const pathname = window.location.pathname;
+        let pathWithoutLocale = pathname;
+        const currentRootUrl = this.getCurrentRootUrl();
+
+        if (currentRootUrl && currentRootUrl !== '/') {
+          if (pathname.startsWith(currentRootUrl)) {
+            pathWithoutLocale = pathname.substring(currentRootUrl.length);
+          }
+        }
+
+        if (!pathWithoutLocale.startsWith('/')) {
+          pathWithoutLocale = '/' + pathWithoutLocale;
+        }
+
+        let finalUrl = rootUrl === '/' ? pathWithoutLocale : rootUrl.replace(/\/$/, '') + pathWithoutLocale;
+
+        if (window.location.search) finalUrl += window.location.search;
+        if (window.location.hash) finalUrl += window.location.hash;
+
+        return finalUrl;
+      }
+
+      getCurrentRootUrl() {
+        const currentOption = this.options.find((opt) => opt.dataset.value === this.currentLocale);
+        return currentOption ? currentOption.dataset.rootUrl : '/';
+      }
+
+      handleDropdownKeydown(e) {
+        const current = document.activeElement;
+        const optionsArray = Array.from(this.dropdown.querySelectorAll('[role="option"]'));
+        const index = optionsArray.indexOf(current);
+
+        if (e.key === 'ArrowDown' || e.key === 'ArrowUp') {
+          e.preventDefault();
+          let nextIndex;
+          if (e.key === 'ArrowDown') {
+            nextIndex = (index + 1) % optionsArray.length;
+          } else {
+            nextIndex = (index - 1 + optionsArray.length) % optionsArray.length;
+          }
+          optionsArray[nextIndex].focus();
+        } else if (e.key === 'Escape') {
+          this.closeDropdown();
+        }
+      }
+    }
+
+    // Инициализация без DOMContentLoaded: defer-скрипт уже выполняется после разбора DOM
+    const selectors = document.querySelectorAll('.custom-language-selector');
+    selectors.forEach((sel) => new CustomLanguageSelector(sel));
+  {% endjavascript %}
+{%- endif -%}
