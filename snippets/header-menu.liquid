@@ -73,7 +73,17 @@
     color: #222;
     text-decoration: none;
     background: none;
-    text-shadow: 0 1px 0 rgba(0, 0, 0, 0.05); /* едва заметный объём */
+    position: relative;
+  }
+  .header__menu-link.header__menu-item-link--active::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    bottom: -4px;
+    width: 100%;
+    height: 2px;
+    background: linear-gradient(90deg, #f4a261, #e76f51);
+    border-radius: 1px;
   }
 
   .header__menu-link:hover {
