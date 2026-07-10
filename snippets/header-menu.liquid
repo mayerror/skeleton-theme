@@ -6,7 +6,11 @@
 {% if menu != blank %}
   <menu class="header__menu-list">
     {% for link in menu.links %}
-      {% assign is_active = link.current or link.active %}
+      {% assign is_active = false %}
+
+      {% if link.current or link.active %}
+        {% assign is_active = true %}
+      {% endif %}
       <li class="header__menu-item">
         {% if link.links == blank %}
           <a
