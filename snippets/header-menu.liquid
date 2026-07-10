@@ -4,13 +4,24 @@
 
 {% comment %} Only render if a menu is selected {% endcomment %}
 {% if menu != blank %}
-  <menu class="header-menu-list">
+  <menu class="header__menu-list">
     {% for link in menu.links %}
-      <li class="header-menu-item">
+      {% assign is_active = link.current or link.active %}
+      <li class="header__menu-item">
         {% if link.links == blank %}
-          <a href="{{ link.url }}" class="header-menu-link">{{ link.title }}</a>
+          <a
+            href="{{ link.url }}"
+            class="header__menu-link {% if is_active %}header__menu-item-link--active{% endif %}"
+          >
+            {{- link.title -}}
+          </a>
         {% else %}
-          <a href="{{ link.url }}" class="header-menu-link chevron">{{ link.title }}</a>
+          <a
+            href="{{ link.url }}"
+            class="header__menu-link chevron {% if is_active %}header__menu-item-link--active{% endif %}"
+          >
+            {{- link.title -}}
+          </a>
           <ul class="header-submenu">
             {% for child_link in link.links %}
               <li class="header-submenu-item">
@@ -25,7 +36,7 @@
 {% endif %}
 
 <style>
-  .header-menu-list {
+  .header__menu-list {
     display: flex;
     list-style: none;
     margin: 0;
@@ -33,20 +44,18 @@
     gap: 1.5rem;
   }
 
-  .header-menu-item {
+  .header__menu-item {
     position: relative;
   }
 
-  .header-menu-item .chevron {
+  .header__menu-item .chevron {
     padding-right: 1.2rem;
   }
 
-
-  .header-menu-link {
+  .header__menu-link {
     padding: 0.2rem 0.3rem;
     position: relative;
     display: inline-block;
-    {% comment %} padding-right: 20px; {% endcomment %}
     text-decoration: none;
     color: #333;
     font-weight: 500;
@@ -55,12 +64,17 @@
     transition: background-color 0.25s ease;
   }
 
-  .header-menu-link:hover {
+  .header__menu-link.header__menu-item-link--active {
     color: var(--color-text-hover, #800020);
     background-color: rgba(0, 0, 0, 0.04);
   }
 
-  .header-menu-link:active {
+  .header__menu-link:hover {
+    color: var(--color-text-hover, #800020);
+    background-color: rgba(0, 0, 0, 0.04);
+  }
+
+  .header__menu-link:active {
     text-decoration: underline;
     background-color: rgba(0, 0, 0, 0.04);
   }
@@ -83,7 +97,7 @@
     z-index: 1000;
   }
 
-  .header-menu-item:hover .header-submenu {
+  .header__menu-item:hover .header-submenu {
     opacity: 1;
     visibility: visible;
     transform: translateY(0);
@@ -108,7 +122,7 @@
 
   /* Mobile styles */
   @media (max-width: 768px) {
-    .header-menu-list {
+    .header__menu-list {
       flex-direction: column;
       gap: 0;
     }
