@@ -32,6 +32,12 @@ body {
   font-size: 1.1rem;
 }
 
+.icon {
+  width: 24px;
+  height: 24px;
+  display: inline-block;
+}
+
 .footer {
   height: 60px;
   background-color: #2c3e50;
