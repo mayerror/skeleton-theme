@@ -331,9 +331,22 @@
   }
 
   .cart-count {
-    position: absolute;
-    top: 0;
-    right: 0;
+  position: absolute;
+  top: -6px;          /* поднимите выше родителя, при необходимости подкорректируйте */
+  right: -6px;        /* разместите в правом верхнем углу */
+  min-width: 12px;
+  height: 12px;
+  background-color: #ffffff;   /* белый фон — закрашенный кружочек */
+  border: 1px solid #000000;   /* чёткая чёрная обводка для контраста */
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 8px;              /* мелкий текст */
+  color: #000000;              /* чёрный текст */
+  line-height: 1;
+  padding: 0 2px;              /* небольшой отступ по бокам для двухзначных чисел */
+  box-sizing: border-box;
   }
 
   .header__language-selector,
