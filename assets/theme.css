@@ -50,6 +50,17 @@ body {
   display: inline-block;
 }
 
+.disclosure__list {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  right: 0;
+  z-index: 10;
+  background-color: white;
+  border: 1px solid #ddd;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+}
+
 .disclosure__button {
   display: flex;
   align-items: center;
