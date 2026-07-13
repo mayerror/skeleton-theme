@@ -1,17 +1,17 @@
 {% if localization.available_languages.size > 1 %}
   <localization-form>
     {% form 'localization' %}
-      <div className="disclosure">
-        <button type="button" className="disclosure__button" aria-expanded="false" aria-controls="LanguageList">
+      <div class="disclosure">
+        <button type="button" class="disclosure__button" aria-expanded="false" aria-controls="LanguageList">
           {{ localization.language.endonym_name | capitalize }}
-          <svg aria-hidden="true" focusable="false" role="presentation" className="icon icon-caret" viewBox="0 0 10 6">
-            <path fill-rule="evenodd" clip-rule="evenodd" d="M9.354.646a.5.5 0 00-.708 0L5 4.293 1.354.646a.5.5 0 00-.708.708l4 4a.5.5 0 00.708 0l4-4a.5.5 0 000-.708z" fill="currentColor">
+          <svg aria-hidden="true" focusable="false" role="presentation" class="icon icon-caret" viewBox="0 0 10 6">
+            <path fill-rule="evenodd" clip-rule="evenodd" d="M9.354.646a.5.5 0 00-.708 0L5 4.293 1.354.646a.5.5 0 00-.708.708l4 4a.5.5 0 00.708 0l4-4a.5.5 0 000-.708z" fill="currentColor" />
           </svg>
         </button>
 
-        <ul id="LanguageList" role="list" className="disclosure__list" hidden>
+        <ul id="LanguageList" role="list" class="disclosure__list" hidden>
           {% for language in localization.available_languages %}
-            <li className="disclosure__item" tabindex="-1">
+            <li class="disclosure__item" tabindex="-1">
               <a
                 href="#"
                 {% if language.iso_code == localization.language.iso_code %}
