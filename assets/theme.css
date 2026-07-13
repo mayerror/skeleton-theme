@@ -84,3 +84,7 @@ body {
   font-size: 0.8rem;
   color: var(--color-text, #222);
 }
+
+.disclosure__button:hover {
+  color: var(--color-text-hover, #800020);
+}
