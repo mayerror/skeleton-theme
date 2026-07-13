@@ -44,3 +44,49 @@ body {
   text-align: center;
   width: 100%;
 }
+
+.disclosure {
+  position: relative;
+  display: inline-block;
+}
+
+.disclosure__list {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  right: 0;
+  z-index: 10;
+  background-color: white;
+  border: 1px solid #ddd;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.disclosure__item {
+  border-bottom: 1px solid #eee;
+}
+
+.disclosure__item:last-child {
+  border-bottom: none;
+}
+
+.disclosure__button {
+  display: flex;
+  align-items: center;
+  gap: 0.25rem;
+  background: none;
+  border: none;
+  padding: 0.4rem 1.2rem 0.4rem 0.4rem;
+  border-radius: 0.2rem;
+  cursor: pointer;
+  font-family: inherit;
+  font-size: 0.875rem;
+  color: var(--color-text, #222);
+}
+
+.disclosure__button:hover {
+  color: var(--color-text-hover, #800020);
+  background-color: rgba(0, 0, 0, 0.04);
+}

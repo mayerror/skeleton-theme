@@ -62,46 +62,29 @@
           <div class="header__icons">
             {% if section.settings.show_language_selector %}
               {% render 'language-selector' %}
-              {% comment %}
-                <div class="header__language-selector chevron">
-                  {% comment %} Language selector would go here {% endcomment %}
-                  <select aria-label="Language selector">
-                    {% for locale in shop.published_locales %}
-                      <option
-                        value="{{ locale.iso_code }}"
-                        {% if locale.iso_code == cart.locale.iso_code %}
-                          selected
-                        {% endif %}
-                      >
-                        {{ locale.name }}
-                      </option>
-                    {% endfor %}
+            {% endif %}
+            {% comment %}
+              {% if section.settings.show_country_selector %}
+                <div class="header__country-selector">
+                  {% comment %} Country selector would go here {% endcomment %}
+                  <select aria-label="Country/region selector">
+                    <option value="US" selected>United States</option>
+                    <option value="CA">Canada</option>
+                    <option value="GB">United Kingdom</option>
                   </select>
                 </div>
-              {% endcomment %}
-            {% endif %}
-
-            {% if section.settings.show_country_selector %}
-              <div class="header__country-selector">
-                {% comment %} Country selector would go here {% endcomment %}
-                <select aria-label="Country/region selector">
-                  <option value="US" selected>United States</option>
-                  <option value="CA">Canada</option>
-                  <option value="GB">United Kingdom</option>
-                </select>
-              </div>
-            {% endif %}
-            {% form 'localization' %}
-              <!-- form content -->
-            {% endform %}
+              {% endif %}
+            {% endcomment %}
 
             {% if section.settings.show_account and shop.customer_accounts_enabled %}
               <a href="{{ routes.account_url }}" aria-label="Account" class="header__account-icon">
-                <img
-                  src="{{ 'user.svg' | asset_url }}"
-                  alt="User icon"
-                  class="icon icon__user"
-                >
+                {% render 'user-icon' %}
+              </a>
+            {% endif %}
+
+            {% if section.settings.show_search %}
+              <a href="{{ routes.search_url }}" aria-label="Search" class="header__search-icon">
+                {% render 'search-icon' %}
               </a>
             {% endif %}
 
@@ -109,11 +92,7 @@
               {% if cart.item_count > 0 %}
                 <span class="cart-count">{{ cart.item_count }}</span>
               {% endif %}
-              <img
-                src="{{ 'shopping-bag.svg' | asset_url }}"
-                alt="Cart icon"
-                class="icon icon__cart"
-              >
+              {% render 'cart-icon' %}
             </a>
           </div>
         </div>
@@ -220,6 +199,12 @@
     },
     {
       "type": "checkbox",
+      "id": "show_search",
+      "label": "Show search",
+      "default": true
+    },
+    {
+      "type": "checkbox",
       "id": "show_language_selector",
       "label": "Show language selector",
       "default": false
@@ -312,10 +297,10 @@
 
   .header__icons a {
     /* color: var(--color-text, #222); */
-    color: var(--color-text-hover, #800020);
+    color: var(--color-text, #222);
   }
 
-  .header__icons .icon:hover {
+  .header__icons a:hover {
     color: var(--color-text-hover, #800020);
   }
 
@@ -333,18 +318,18 @@
 
   .cart-count {
     position: absolute;
-    top: -6px;
-    right: -6px;
+    top: -2px;
+    right: -2px;
     min-width: 20px;
     height: 20px;
-    background-color: #fff;
+    background-color: #030303;
     border: 1px solid #000000;
     border-radius: 50%;
     display: flex;
     align-items: center;
     justify-content: center;
     font-size: 0.8rem;
-    color: #000000;
+    color: #fff;
     line-height: 1;
     padding: 0 2px;
     box-sizing: border-box;
