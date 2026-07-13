@@ -63,17 +63,21 @@
             {% if section.settings.show_language_selector %}
               {% render 'language-selector' %}
             {% endif %}
-
-            {% if section.settings.show_country_selector %}
-              <div class="header__country-selector">
-                {% comment %} Country selector would go here {% endcomment %}
-                <select aria-label="Country/region selector">
-                  <option value="US" selected>United States</option>
-                  <option value="CA">Canada</option>
-                  <option value="GB">United Kingdom</option>
-                </select>
-              </div>
-            {% endif %}
+            {% comment %}
+              {% if section.settings.show_country_selector %}
+                <div class="header__country-selector">
+                  {% comment %} Country selector would go here {% endcomment %}
+                  <select aria-label="Country/region selector">
+                    <option value="US" selected>United States</option>
+                    <option value="CA">Canada</option>
+                    <option value="GB">United Kingdom</option>
+                  </select>
+                </div>
+              {% endif %}
+            {% endcomment %}
+            <a href="{{ routes.search_url }}" aria-label="Search" class="header__search-icon">
+              {% render 'search-icon' %}
+            </a>
 
             {% if section.settings.show_account and shop.customer_accounts_enabled %}
               <a href="{{ routes.account_url }}" aria-label="Account" class="header__account-icon">
