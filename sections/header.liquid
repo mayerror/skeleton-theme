@@ -75,15 +75,16 @@
                 </div>
               {% endif %}
             {% endcomment %}
-            <a href="{{ routes.search_url }}" aria-label="Search" class="header__search-icon">
-              {% render 'search-icon' %}
-            </a>
 
             {% if section.settings.show_account and shop.customer_accounts_enabled %}
               <a href="{{ routes.account_url }}" aria-label="Account" class="header__account-icon">
                 {% render 'user-icon' %}
               </a>
             {% endif %}
+
+            <a href="{{ routes.search_url }}" aria-label="Search" class="header__search-icon">
+              {% render 'search-icon' %}
+            </a>
 
             <a href="{{ routes.cart_url }}" class="header__cart-link" aria-label="Shopping cart">
               {% if cart.item_count > 0 %}
