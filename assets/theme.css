@@ -45,6 +45,11 @@ body {
   width: 100%;
 }
 
+.disclosure {
+  position: relative;
+  display: inline-block;
+}
+
 .disclosure__button {
   display: flex;
   align-items: center;
