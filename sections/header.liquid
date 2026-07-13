@@ -82,9 +82,11 @@
               </a>
             {% endif %}
 
-            <a href="{{ routes.search_url }}" aria-label="Search" class="header__search-icon">
-              {% render 'search-icon' %}
-            </a>
+            {% if section.settings.show_search %}
+              <a href="{{ routes.search_url }}" aria-label="Search" class="header__search-icon">
+                {% render 'search-icon' %}
+              </a>
+            {% endif %}
 
             <a href="{{ routes.cart_url }}" class="header__cart-link" aria-label="Shopping cart">
               {% if cart.item_count > 0 %}
