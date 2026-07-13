@@ -44,3 +44,9 @@ body {
   text-align: center;
   width: 100%;
 }
+
+.disclosure__button {
+  display: flex;
+  align-items: center;
+  gap: 0.25rem;
+}
