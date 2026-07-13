@@ -105,11 +105,7 @@
               {% if cart.item_count > 0 %}
                 <span class="cart-count">{{ cart.item_count }}</span>
               {% endif %}
-              <img
-                src="{{ 'shopping-bag.svg' | asset_url }}"
-                alt="Cart icon"
-                class="icon icon__cart"
-              >
+              {% render 'user-icon' %}
             </a>
           </div>
         </div>
