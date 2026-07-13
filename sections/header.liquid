@@ -97,11 +97,7 @@
 
             {% if section.settings.show_account and shop.customer_accounts_enabled %}
               <a href="{{ routes.account_url }}" aria-label="Account" class="header__account-icon">
-                <img
-                  src="{{ 'user.svg' | asset_url }}"
-                  alt="User icon"
-                  class="icon icon__user"
-                >
+                {% render 'user-icon' %}
               </a>
             {% endif %}
 
