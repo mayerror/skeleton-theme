@@ -8,7 +8,7 @@
         <span class="hamburger"></span>
       </button>
       <div class="header__inner-top">
-        <div class="header__inner-left">
+        <div class="header__inner-left mobile-left">
           {% if section.settings.logo_position == 'left' %}
             {% if section.settings.logo != blank %}
               <a href="{{ routes.root_url }}" class="header__logo-link">
@@ -25,14 +25,19 @@
             {% endif %}
           {% endif %}
         </div>
-        <div class="header__inner-center">
-          {% if section.settings.logo_position == 'center' %}
+        <div class="header__inner-center mobile-center">
+          {% if section.settings.logo_position == 'center' or section.settings.mobile_logo_position == 'center' %}
+            {% if section.settings.mobile_logo_position == 'center' %}
+              {% assign mobile_logo_width = 150 %}
+            {% else %}
+              {% assign mobile_logo_width = section.settings.logo_width %}
+            {% endif %}
             {% if section.settings.logo != blank %}
               <a href="{{ routes.root_url }}" class="header__logo-link">
                 <img
-                  src="{{ section.settings.logo | image_url: width: section.settings.logo_width }}"
+                  src="{{ section.settings.logo | image_url: width: mobile_logo_width }}"
                   alt="{{ section.settings.logo.alt | escape }}"
-                  width="{{ section.settings.logo_width }}"
+                  width="{{ mobile_logo_width }}"
                   height="{{ section.settings.logo.height }}"
                   class="header__logo-image"
                 >
@@ -42,7 +47,7 @@
             {% endif %}
           {% endif %}
         </div>
-        <div class="header__inner-right">
+        <div class="header__inner-right mobile-right">
           {% if section.settings.logo_position == 'right' %}
             {% if section.settings.logo != blank %}
               <a href="{{ routes.root_url }}" class="header__logo-link">
