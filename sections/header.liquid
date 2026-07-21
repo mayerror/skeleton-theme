@@ -418,41 +418,108 @@
     border-radius: 1px;
   }
 
-  @media (max-width: 768px) {
-    .header__menu-toggle {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-    }
-
+    @media (max-width: 768px) {
+    /* 1. Выстраиваем элементы шапки строго в один ряд */
     .header__inner-top {
-      flex-wrap: wrap;
-    }
-
-    .header__inner-bottom {
-      order: 3;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: nowrap; /* Запрещаем перенос на новую строку */
       width: 100%;
     }
 
-    .header__navigation {
+    /* Прячем левый пустой блок, чтобы логотип встал аккуратно */
+    .header__inner-left {
       display: none;
-      position: absolute;
-      top: 100%;
-      left: 0;
-      right: 0;
-      background-color: white;
-      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-      z-index: 1000;
-      padding: 1rem;
     }
 
-    .header__navigation.active {
+    .header__inner-center {
+      flex: 1;
+      display: flex;
+      justify-content: flex-start; /* Логотип прижимается влево, как на макете */
+    }
+
+    .header__inner-right {
+      flex: auto;
+      display: flex;
+      justify-content: flex-end;
+    }
+
+    /* Показываем кнопку бургера */
+    .header__menu-toggle {
+      display: flex;
+      flex-direction: column;
+      gap: 5px; /* Задаем фиксированный зазор вместо margin у полосок */
+      padding: 5px;
+      margin: 0;
+    }
+
+    .hamburger {
+      margin: 0; /* Сбрасываем старый отступ */
+    }
+
+    /* 2. ПРЕВРАЩАЕМ НИЖНИЙ БЛОК В БОКОВУЮ ПАНЕЛЬ */
+    .header__inner-bottom {
+      position: fixed;
+      top: 0;
+      left: -100%; /* Полностью прячем панель за левый край экрана */
+      width: 80%;  /* Занимает 80% ширины экрана, как на картинке */
+      max-width: 340px;
+      height: 100vh; /* Растягиваем на всю высоту экрана */
+      background-color: #ffffff;
+      box-shadow: 5px 0 15px rgba(0, 0, 0, 0.08);
+      transition: left 0.4s cubic-bezier(0.16, 1, 0.3, 1); /* Плавное выезжание */
+      padding: 100px 24px 40px 24px; /* Большой отступ сверху, чтобы меню не перекрывало верхний ряд */
+      z-index: 999;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-start !important;
+    }
+
+    /* Класс-активатор для открытия панели */
+    .header__inner-bottom.active {
+      left: 0; /* Выезжает на экран */
+    }
+
+    /* Показываем контейнер навигации внутри панели */
+    .header__navigation {
+      display: block; /* Сбрасываем display: none */
+      position: static; /* Убираем абсолютное позиционирование */
+      box-shadow: none;
+      padding: 0;
+      width: 100%;
+    }
+
+    /* Стилизация ссылок меню в мобильной панели */
+    .header__navigation ul {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 1.5rem; /* Дистанция между пунктами меню */
+      list-style: none;
+      padding: 0;
+      margin: 0;
+    }
+
+    .header__navigation a {
+      font-size: 1.1rem;
+      text-transform: uppercase; /* Все буквы заглавные как на макете */
+      letter-spacing: 0.06em;
+      color: var(--color-text, #222);
+      text-decoration: none;
       display: block;
+      width: 100%;
     }
 
-    .header {
-      position: relative;
+    /* 3. АНИМАЦИЯ ИКОНКИ БУРГЕРА (КРЕСТИК) */
+    .header__menu-toggle[aria-expanded="true"] .hamburger:nth-child(1) {
+      transform: translateY(8px) rotate(45deg);
+    }
+    .header__menu-toggle[aria-expanded="true"] .hamburger:nth-child(2) {
+      opacity: 0;
+    }
+    .header__menu-toggle[aria-expanded="true"] .hamburger:nth-child(3) {
+      transform: translateY(-8px) rotate(-45deg);
     }
   }
 {% endstyle %}
