@@ -1,35 +1,90 @@
 <header class="header full-width">
   <div class="container">
     <div class="header__inner">
+      <!-- Mobile menu toggle -->
+      <button class="header__menu-toggle" aria-label="Toggle navigation" aria-expanded="false">
+        <span class="hamburger"></span>
+        <span class="hamburger"></span>
+        <span class="hamburger"></span>
+      </button>
       <div class="header__inner-top">
-        <div class="header__logo-wrapper">
-          {% if section.settings.logo != blank %}
-            <a href="{{ routes.root_url }}" class="header__logo-link">
-              <img
-                src="{{ section.settings.logo | image_url: width: section.settings.logo_width }}"
-                alt="{{ section.settings.logo.alt | escape }}"
-                width="{{ section.settings.logo_width }}"
-                height="{{ section.settings.logo.height }}"
-                class="header__logo-image"
-              >
-            </a>
-          {% else %}
-            <p>{{ shop.name | link_to: routes.root_url }}</p>
+        <div class="header__inner-left">
+          {% if section.settings.logo_position == 'left' %}
+            {% if section.settings.logo != blank %}
+              <a href="{{ routes.root_url }}" class="header__logo-link">
+                <img
+                  src="{{ section.settings.logo | image_url: width: section.settings.logo_width }}"
+                  alt="{{ section.settings.logo.alt | escape }}"
+                  width="{{ section.settings.logo_width }}"
+                  height="{{ section.settings.logo.height }}"
+                  class="header__logo-image"
+                >
+              </a>
+            {% else %}
+              <p>{{ shop.name | link_to: routes.root_url }}</p>
+            {% endif %}
           {% endif %}
         </div>
-        
-        <div class="header__icons-wrapper">
+        <div class="header__inner-center">
+          {% if section.settings.logo_position == 'center' %}
+            {% if section.settings.logo != blank %}
+              <a href="{{ routes.root_url }}" class="header__logo-link">
+                <img
+                  src="{{ section.settings.logo | image_url: width: section.settings.logo_width }}"
+                  alt="{{ section.settings.logo.alt | escape }}"
+                  width="{{ section.settings.logo_width }}"
+                  height="{{ section.settings.logo.height }}"
+                  class="header__logo-image"
+                >
+              </a>
+            {% else %}
+              <p>{{ shop.name | link_to: routes.root_url }}</p>
+            {% endif %}
+          {% endif %}
+        </div>
+        <div class="header__inner-right">
+          {% if section.settings.logo_position == 'right' %}
+            {% if section.settings.logo != blank %}
+              <a href="{{ routes.root_url }}" class="header__logo-link">
+                <img
+                  src="{{ section.settings.logo | image_url: width: section.settings.logo_width }}"
+                  alt="{{ section.settings.logo.alt | escape }}"
+                  width="{{ section.settings.logo_width }}"
+                  height="{{ section.settings.logo.height }}"
+                  class="header__logo-image"
+                >
+              </a>
+            {% else %}
+              <p>{{ shop.name | link_to: routes.root_url }}</p>
+            {% endif %}
+          {% endif %}
           <!-- Header icons -->
           <div class="header__icons">
-            {% if section.settings.show_search %}
-              <a href="{{ routes.search_url }}" aria-label="Search" class="header__search-icon">
-                {% render 'search-icon' %}
-              </a>
+            {% if section.settings.show_language_selector %}
+              {% render 'language-selector' %}
             {% endif %}
+            {% comment %}
+              {% if section.settings.show_country_selector %}
+                <div class="header__country-selector">
+                  {% comment %} Country selector would go here {% endcomment %}
+                  <select aria-label="Country/region selector">
+                    <option value="US" selected>United States</option>
+                    <option value="CA">Canada</option>
+                    <option value="GB">United Kingdom</option>
+                  </select>
+                </div>
+              {% endif %}
+            {% endcomment %}
 
             {% if section.settings.show_account and shop.customer_accounts_enabled %}
               <a href="{{ routes.account_url }}" aria-label="Account" class="header__account-icon">
                 {% render 'user-icon' %}
+              </a>
+            {% endif %}
+
+            {% if section.settings.show_search %}
+              <a href="{{ routes.search_url }}" aria-label="Search" class="header__search-icon">
+                {% render 'search-icon' %}
               </a>
             {% endif %}
 
@@ -40,11 +95,6 @@
               {% render 'cart-icon' %}
             </a>
           </div>
-
-          <!-- Mobile menu toggle -->
-          <button class="header__menu-toggle" aria-label="Toggle navigation" aria-expanded="false">
-            {% render 'hamburger-icon' %}
-          </button>
         </div>
       </div>
       <div class="header__inner-bottom">
@@ -199,7 +249,6 @@
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
     z-index: 1000;
     color: var(--color-text, #222);
-    position: relative;
   }
 
   .header__inner {
@@ -212,61 +261,55 @@
 
   .header__inner-top {
     display: flex;
-    align-items: center;
-    justify-content: space-between;
-    gap: 1.5rem;
-    padding: 1rem 0;
-    flex-wrap: nowrap;
   }
 
-  .header__logo-wrapper {
-    flex: 0 0 auto;
+  .header__inner-left {
+    flex: 1;
+  }
+
+  .header__inner-right {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+  }
+
+  .header__inner-bottom {
+    display: flex;
+    padding-top: 1rem;
+    justify-content: {{ section.settings.menu_position }};
   }
 
   .header__logo-link {
-    display: block;
+    display: inline-block;
   }
 
   .header__logo-link:hover {
     opacity: 0.8;
   }
 
-  .header__logo-image {
-    max-width: 100%;
-    height: auto;
-    display: block;
-  }
-
-  .header__icons-wrapper {
-    display: flex;
-    align-items: center;
-    gap: 1rem;
-    flex: 1;
-    justify-content: flex-end;
-    min-width: 0;
-  }
-
   .header__icons {
     display: flex;
+    justify-content: flex-end;
     align-items: center;
-    gap: 1rem;
+    gap: 0.6rem;
   }
 
   .header__icons a {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    color: currentColor;
-    transition: opacity 0.2s ease;
+    /* color: var(--color-text, #222); */
+    color: var(--color-text, #222);
   }
 
   .header__icons a:hover {
-    opacity: 0.7;
+    color: var(--color-text-hover, #800020);
   }
 
-  .header__icons svg {
-    width: 24px;
-    height: 24px;
+  .header__icons .icon {
+    width: 1.5rem;
+    height: 1.5rem;
+    display: inline-block;
+    position: relative;
+    cursor: pointer;
   }
 
   .header__cart-link {
@@ -275,131 +318,141 @@
 
   .cart-count {
     position: absolute;
-    top: -8px;
-    right: -8px;
-    background: currentColor;
-    color: white;
+    top: -2px;
+    right: -2px;
+    min-width: 20px;
+    height: 20px;
+    background-color: #030303;
+    border: 1px solid #000000;
     border-radius: 50%;
-    width: 18px;
-    height: 18px;
-    font-size: 10px;
     display: flex;
     align-items: center;
     justify-content: center;
-    font-weight: 600;
+    font-size: 0.8rem;
+    color: #fff;
+    line-height: 1;
+    padding: 0 2px;
+    box-sizing: border-box;
+    z-index: 10;
   }
 
-  /* Mobile menu toggle - hidden on desktop */
+  .header__language-selector,
+  .header__country-selector {
+    position: relative;
+  }
+
+  .chevron::after {
+    content: '';
+    position: absolute;
+    right: 6px;
+    top: -4px;
+    bottom: 0;
+    margin: auto;
+    transform: rotate(45deg);
+    border-right: 1px solid currentColor;
+    border-bottom: 1px solid currentColor;
+    width: 6px;
+    height: 6px;
+    pointer-events: none;
+  }
+
+  .header__language-selector select,
+  .header__country-selector select {
+    background: transparent;
+    border: none;
+    outline: none;
+    box-shadow: none;
+    padding: 0.4rem 1.0rem 0.4rem 0.4rem;
+    cursor: pointer;
+    color: inherit;
+    font-size: 14px;
+    font-family: inherit;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+  }
+
+  .header__language-selector select:hover,
+  .header__country-selector select:hover {
+    color: var(--color-text-hover, #800020);
+    background-color: rgba(0, 0, 0, 0.04);
+  }
+
+  .header__language-selector option,
+  .header__country-selector option {
+    color: var(--color-text, #222);
+    background-color: var(--color-background-1, #d6d6d6);
+  }
+
+  .header__language-selector option:hover,
+  .header__country-selector option:hover {
+    color: var(--color-text-hover, #800020);
+    background-color: rgba(0, 0, 0, 0.04);
+  }
+
+  @media (max-width: 1200px) {
+    .header .container {
+      padding: 0 1rem;
+    }
+    .header .header__inner-left {
+      flex: 0;
+    }
+  }
+
   .header__menu-toggle {
     display: none;
     background: none;
     border: none;
     cursor: pointer;
-    padding: 8px;
-    color: currentColor;
-    flex-shrink: 0;
+    padding: 10px;
+    z-index: 1001;
   }
 
-  .header__menu-toggle svg {
-    width: 24px;
-    height: 24px;
-  }
-
-  /* Bottom navigation */
-  .header__inner-bottom {
-    border-top: 1px solid rgba(0, 0, 0, 0.08);
-  }
-
-  .header__navigation ul {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 0.5rem;
-    list-style: none;
-    margin: 0;
-    padding: 1rem 0;
-  }
-
-  .header__navigation li {
-    position: relative;
-  }
-
-  .header__navigation a {
+  .hamburger {
     display: block;
-    padding: 0.5rem 1rem;
-    text-decoration: none;
-    color: inherit;
-    transition: opacity 0.2s ease;
-    white-space: nowrap;
+    width: 24px;
+    height: 3px;
+    background-color: #333;
+    margin: 5px 0;
+    transition: transform 0.3s ease, opacity 0.3s ease;
+    border-radius: 1px;
   }
 
-  .header__navigation a:hover {
-    opacity: 0.7;
-  }
-
-  /* Responsive: below 1024px - mobile layout */
-  @media (max-width: 1024px) {
-    .header__inner-top {
-      flex-wrap: nowrap;
-    }
-    
-    .header__logo-wrapper {
-      flex: 0 0 auto;
-    }
-    
-    .header__icons-wrapper {
-      flex: 1;
-      justify-content: flex-end;
-      min-width: 0;
-    }
-    
+  @media (max-width: 768px) {
     .header__menu-toggle {
       display: flex;
+      flex-direction: column;
       align-items: center;
       justify-content: center;
     }
-    
-    /* Navigation becomes mobile drawer */
+
+    .header__inner-top {
+      flex-wrap: wrap;
+    }
+
     .header__inner-bottom {
+      order: 3;
+      width: 100%;
+    }
+
+    .header__navigation {
+      display: none;
       position: absolute;
       top: 100%;
       left: 0;
       right: 0;
-      background: white;
+      background-color: white;
       box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
       z-index: 1000;
-      display: none;
-      padding: 1rem 0;
+      padding: 1rem;
     }
-    
-    .header__inner-bottom.active {
+
+    .header__navigation.active {
       display: block;
     }
-    
+
     .header {
       position: relative;
-    }
-    
-    .header__navigation ul {
-      flex-direction: column;
-    }
-    
-    .header__navigation a {
-      padding: 0.75rem 1.5rem;
-    }
-  }
-
-  @media (max-width: 768px) {
-    .header__inner-top {
-      padding: 0.75rem 0;
-    }
-    
-    .header__icons {
-      gap: 0.75rem;
-    }
-    
-    .header__icons svg {
-      width: 22px;
-      height: 22px;
     }
   }
 {% endstyle %}
