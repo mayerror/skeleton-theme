@@ -1,90 +1,35 @@
 <header class="header full-width">
   <div class="container">
     <div class="header__inner">
-      <!-- Mobile menu toggle -->
-      <button class="header__menu-toggle" aria-label="Toggle navigation" aria-expanded="false">
-        <span class="hamburger"></span>
-        <span class="hamburger"></span>
-        <span class="hamburger"></span>
-      </button>
       <div class="header__inner-top">
-        <div class="header__inner-left">
-          {% if section.settings.logo_position == 'left' %}
-            {% if section.settings.logo != blank %}
-              <a href="{{ routes.root_url }}" class="header__logo-link">
-                <img
-                  src="{{ section.settings.logo | image_url: width: section.settings.logo_width }}"
-                  alt="{{ section.settings.logo.alt | escape }}"
-                  width="{{ section.settings.logo_width }}"
-                  height="{{ section.settings.logo.height }}"
-                  class="header__logo-image"
-                >
-              </a>
-            {% else %}
-              <p>{{ shop.name | link_to: routes.root_url }}</p>
-            {% endif %}
+        <div class="header__logo-wrapper">
+          {% if section.settings.logo != blank %}
+            <a href="{{ routes.root_url }}" class="header__logo-link">
+              <img
+                src="{{ section.settings.logo | image_url: width: section.settings.logo_width }}"
+                alt="{{ section.settings.logo.alt | escape }}"
+                width="{{ section.settings.logo_width }}"
+                height="{{ section.settings.logo.height }}"
+                class="header__logo-image"
+              >
+            </a>
+          {% else %}
+            <p>{{ shop.name | link_to: routes.root_url }}</p>
           {% endif %}
         </div>
-        <div class="header__inner-center">
-          {% if section.settings.logo_position == 'center' %}
-            {% if section.settings.logo != blank %}
-              <a href="{{ routes.root_url }}" class="header__logo-link">
-                <img
-                  src="{{ section.settings.logo | image_url: width: section.settings.logo_width }}"
-                  alt="{{ section.settings.logo.alt | escape }}"
-                  width="{{ section.settings.logo_width }}"
-                  height="{{ section.settings.logo.height }}"
-                  class="header__logo-image"
-                >
-              </a>
-            {% else %}
-              <p>{{ shop.name | link_to: routes.root_url }}</p>
-            {% endif %}
-          {% endif %}
-        </div>
-        <div class="header__inner-right">
-          {% if section.settings.logo_position == 'right' %}
-            {% if section.settings.logo != blank %}
-              <a href="{{ routes.root_url }}" class="header__logo-link">
-                <img
-                  src="{{ section.settings.logo | image_url: width: section.settings.logo_width }}"
-                  alt="{{ section.settings.logo.alt | escape }}"
-                  width="{{ section.settings.logo_width }}"
-                  height="{{ section.settings.logo.height }}"
-                  class="header__logo-image"
-                >
-              </a>
-            {% else %}
-              <p>{{ shop.name | link_to: routes.root_url }}</p>
-            {% endif %}
-          {% endif %}
+        
+        <div class="header__icons-wrapper">
           <!-- Header icons -->
           <div class="header__icons">
-            {% if section.settings.show_language_selector %}
-              {% render 'language-selector' %}
+            {% if section.settings.show_search %}
+              <a href="{{ routes.search_url }}" aria-label="Search" class="header__search-icon">
+                {% render 'search-icon' %}
+              </a>
             {% endif %}
-            {% comment %}
-              {% if section.settings.show_country_selector %}
-                <div class="header__country-selector">
-                  {% comment %} Country selector would go here {% endcomment %}
-                  <select aria-label="Country/region selector">
-                    <option value="US" selected>United States</option>
-                    <option value="CA">Canada</option>
-                    <option value="GB">United Kingdom</option>
-                  </select>
-                </div>
-              {% endif %}
-            {% endcomment %}
 
             {% if section.settings.show_account and shop.customer_accounts_enabled %}
               <a href="{{ routes.account_url }}" aria-label="Account" class="header__account-icon">
                 {% render 'user-icon' %}
-              </a>
-            {% endif %}
-
-            {% if section.settings.show_search %}
-              <a href="{{ routes.search_url }}" aria-label="Search" class="header__search-icon">
-                {% render 'search-icon' %}
               </a>
             {% endif %}
 
@@ -95,6 +40,11 @@
               {% render 'cart-icon' %}
             </a>
           </div>
+
+          <!-- Mobile menu toggle -->
+          <button class="header__menu-toggle" aria-label="Toggle navigation" aria-expanded="false">
+            {% render 'hamburger-icon' %}
+          </button>
         </div>
       </div>
       <div class="header__inner-bottom">
