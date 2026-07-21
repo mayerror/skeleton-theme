@@ -16,6 +16,24 @@ body {
   margin: 0 auto;
 }
 
+@media (max-width: 1024px) {
+  .container {
+    padding: 0 1.5rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .container {
+    padding: 0 1rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .container {
+    padding: 0 0.75rem;
+  }
+}
+
 .main-content {
   min-height: calc(100vh - 80px - 60px);
   padding: 40px 0;
