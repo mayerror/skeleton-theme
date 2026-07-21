@@ -8,43 +8,55 @@
         <span class="hamburger"></span>
       </button>
       <div class="header__inner-top">
-        <div class="header__inner-left mobile-left">
+        <div class="header__inner-left">
           {% if section.settings.logo_position == 'left' %}
-            <a href="{{ routes.root_url }}" class="header__logo-link">
-              <img
-                src="{{ section.settings.logo | image_url: width: section.settings.logo_width }}"
-                alt="{{ section.settings.logo.alt | escape }}"
-                width="{{ section.settings.logo_width }}"
-                height="{{ section.settings.logo.height }}"
-                class="header__logo-image"
-              >
-            </a>
+            {% if section.settings.logo != blank %}
+              <a href="{{ routes.root_url }}" class="header__logo-link">
+                <img
+                  src="{{ section.settings.logo | image_url: width: section.settings.logo_width }}"
+                  alt="{{ section.settings.logo.alt | escape }}"
+                  width="{{ section.settings.logo_width }}"
+                  height="{{ section.settings.logo.height }}"
+                  class="header__logo-image"
+                >
+              </a>
+            {% else %}
+              <p>{{ shop.name | link_to: routes.root_url }}</p>
+            {% endif %}
           {% endif %}
         </div>
-        <div class="header__inner-center mobile-center">
-          {% if section.settings.logo != blank and section.settings.mobile_logo_position == 'center' %}
-            <a href="{{ routes.root_url }}" class="header__logo-link">
-              <img
-                src="{{ section.settings.logo | image_url: width: 150 }}"
-                alt="{{ section.settings.logo.alt | escape }}"
-                width="150"
-                height="{{ section.settings.logo.height | times: 150.0 | divided_by: section.settings.logo_width | round }}"
-                class="header__logo-image"
-              >
-            </a>
+        <div class="header__inner-center">
+          {% if section.settings.logo_position == 'center' %}
+            {% if section.settings.logo != blank %}
+              <a href="{{ routes.root_url }}" class="header__logo-link">
+                <img
+                  src="{{ section.settings.logo | image_url: width: section.settings.logo_width }}"
+                  alt="{{ section.settings.logo.alt | escape }}"
+                  width="{{ section.settings.logo_width }}"
+                  height="{{ section.settings.logo.height }}"
+                  class="header__logo-image"
+                >
+              </a>
+            {% else %}
+              <p>{{ shop.name | link_to: routes.root_url }}</p>
+            {% endif %}
           {% endif %}
         </div>
-        <div class="header__inner-right mobile-right">
+        <div class="header__inner-right">
           {% if section.settings.logo_position == 'right' %}
-            <a href="{{ routes.root_url }}" class="header__logo-link">
-              <img
-                src="{{ section.settings.logo | image_url: width: section.settings.logo_width }}"
-                alt="{{ section.settings.logo.alt | escape }}"
-                width="{{ section.settings.logo_width }}"
-                height="{{ section.settings.logo.height }}"
-                class="header__logo-image"
-              >
-            </a>
+            {% if section.settings.logo != blank %}
+              <a href="{{ routes.root_url }}" class="header__logo-link">
+                <img
+                  src="{{ section.settings.logo | image_url: width: section.settings.logo_width }}"
+                  alt="{{ section.settings.logo.alt | escape }}"
+                  width="{{ section.settings.logo_width }}"
+                  height="{{ section.settings.logo.height }}"
+                  class="header__logo-image"
+                >
+              </a>
+            {% else %}
+              <p>{{ shop.name | link_to: routes.root_url }}</p>
+            {% endif %}
           {% endif %}
           <!-- Header icons -->
           <div class="header__icons">
@@ -387,24 +399,6 @@
     }
   }
 
-  @media (max-width: 1024px) {
-    .header .container {
-      padding: 0 1.5rem;
-    }
-    .header__inner-left,
-    .header__inner-center,
-    .header__inner-right {
-      flex: 0 0 auto;
-    }
-    .header__icons {
-      gap: 0.5rem;
-    }
-    .header__icons .icon {
-      width: 1.4rem;
-      height: 1.4rem;
-    }
-  }
-
   .header__menu-toggle {
     display: none;
     background: none;
@@ -436,35 +430,9 @@
       flex-wrap: wrap;
     }
 
-    .header__inner-left.mobile-left {
-      order: 1;
-      flex: 0 0 auto;
-    }
-
-    .header__inner-center.mobile-center {
-      order: 2;
-      flex: 1;
-      display: flex;
-      justify-content: center;
-    }
-
-    .header__inner-right.mobile-right {
-      order: 3;
-      flex: 0 0 auto;
-    }
-
     .header__inner-bottom {
-      order: 4;
+      order: 3;
       width: 100%;
-    }
-
-    .header__icons {
-      gap: 0.4rem;
-    }
-
-    .header__icons .icon {
-      width: 1.3rem;
-      height: 1.3rem;
     }
 
     .header__navigation {
@@ -485,38 +453,6 @@
 
     .header {
       position: relative;
-    }
-  }
-
-  @media (max-width: 480px) {
-    .header .container {
-      padding: 0 1rem;
-    }
-
-    .header__icons {
-      gap: 0.3rem;
-    }
-
-    .header__icons .icon {
-      width: 1.25rem;
-      height: 1.25rem;
-    }
-
-    .cart-count {
-      min-width: 18px;
-      height: 18px;
-      font-size: 0.7rem;
-    }
-  }
-
-  @media (max-width: 360px) {
-    .header__icons {
-      gap: 0.25rem;
-    }
-
-    .header__icons .icon {
-      width: 1.125rem;
-      height: 1.125rem;
     }
   }
 {% endstyle %}
