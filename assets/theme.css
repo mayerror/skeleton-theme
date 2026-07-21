@@ -52,6 +52,7 @@ body {
 
 .disclosure__list {
   position: absolute;
+  border-radius: 0.25rem;
   top: 100%;
   left: 0;
   right: 0;
@@ -66,6 +67,14 @@ body {
 
 .disclosure__item {
   border-bottom: 1px solid #eee;
+}
+
+.disclosure__item a {
+  text-decoration: none;
+  display: block;
+  padding: 0.4rem;
+  font-size: 0.875rem;
+  color: var(--color-text, #222);
 }
 
 .disclosure__item:last-child {
