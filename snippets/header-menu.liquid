@@ -125,6 +125,12 @@
   }
 
   /* Mobile styles */
+  @media (max-width: 1024px) {
+    .header__menu-list {
+      gap: 1.2rem;
+    }
+  }
+
   @media (max-width: 768px) {
     .header__menu-list {
       flex-direction: column;
@@ -149,6 +155,12 @@
 
     .header-submenu-link {
       padding-left: 2rem;
+    }
+  }
+
+  @media (max-width: 480px) {
+    .header__menu-link {
+      padding: 0.5rem 0;
     }
   }
 </style>
