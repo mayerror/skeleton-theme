@@ -52,6 +52,7 @@ body {
 
 .disclosure__list {
   position: absolute;
+  border-radius: 0.25rem;
   top: 100%;
   left: 0;
   right: 0;
